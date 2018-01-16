@@ -1,6 +1,6 @@
 # TheHands
 
-This TheEyes library provides methods to read and find images on the screen. A part of alternative tools to sikulix.
+This TheHands library provides methods to send Windows Inputs such as Mouse inputs and Keyboard inputs. A part of alternative tools to [sikulix](http://sikulix.com/).
 
 _This library was built and tested on Windows 10 (64bit) with .NET Framework 4.5._
 
@@ -58,7 +58,7 @@ void HandsTest()
     Keyboard.CharacterInput('!');
 }
 ```
-
+_The example only covered Keyboard part. For Mouse part, please refer to [TheEyes](https://github.com/quellatalo/TheEyes)._
 
 License
 ----
