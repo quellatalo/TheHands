@@ -20,10 +20,10 @@ namespace Qellatalo.Nin.TheHands
         internal struct MouseKeybdhardwareInputUnion
         {
             [FieldOffset(0)]
-            public Mouse.MouseInputData mi;
+            public MouseHandler.MouseInputData mi;
 
             [FieldOffset(0)]
-            public Keyboard.KEYBDINPUT ki;
+            public KeyboardHandler.KEYBDINPUT ki;
 
             [FieldOffset(0)]
             public Hardware.HARDWAREINPUT hi;
@@ -37,7 +37,7 @@ namespace Qellatalo.Nin.TheHands
             InputHardware
         }
 
-        internal static class Hardware
+        internal class Hardware
         {
             [StructLayout(LayoutKind.Sequential)]
             internal struct HARDWAREINPUT

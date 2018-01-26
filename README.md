@@ -17,45 +17,46 @@ The package is available on Nuget: [Quellatalo.Nin.TheHands](https://www.nuget.o
 /// </summary>
 void HandsTest()
 {
-    Keyboard.KeyTyping(Keys.LWin);
+    KeyboardHandler keyboard = new KeyboardHandler();
+    keyboard.KeyTyping(Keys.LWin);
     Thread.Sleep(2222); // wait (for start menu to appear)
-    Keyboard.StringInput("notepad");
+    keyboard.StringInput("notepad");
     Thread.Sleep(2222); // wait, it might take some time for slow PCs to find the program
-    Keyboard.KeyTyping(Keys.Enter);
+    keyboard.KeyTyping(Keys.Enter);
     Thread.Sleep(2222); // wait (for start menu to appear)
-    Keyboard.StringInput("Kawaii is Justice!");
-    Keyboard.KeyTyping(Keys.Enter);
+    keyboard.StringInput("Kawaii is Justice!");
+    keyboard.KeyTyping(Keys.Enter);
     Thread.Sleep(2222); // wait (just to see what is happening)
 
     // Set action delay (in milliseconds) for further keyboard inputs
     // in order to have a better feel of human-like actions
-    Keyboard.DefaultKeyboardActionDelay = 41;
+    keyboard.DefaultKeyboardActionDelay = 41;
 
     // Cut all current text to clipboard
     // ctrl + A, ctrl + X
-    Keyboard.KeyDown(Keys.LControlKey);
-    Keyboard.KeyTyping(Keys.A);
-    Keyboard.KeyTyping(Keys.X);
-    Keyboard.KeyUp(Keys.LControlKey);
+    keyboard.KeyDown(Keys.LControlKey);
+    keyboard.KeyTyping(Keys.A);
+    keyboard.KeyTyping(Keys.X);
+    keyboard.KeyUp(Keys.LControlKey);
 
     // Type something (Vv)
-    Keyboard.KeyDown(Keys.LShiftKey);
-    Keyboard.KeyTyping(Keys.V);
-    Keyboard.KeyUp(Keys.LShiftKey);
-    Keyboard.KeyTyping(Keys.V);
-    Keyboard.KeyTyping(Keys.Enter);
+    keyboard.KeyDown(Keys.LShiftKey);
+    keyboard.KeyTyping(Keys.V);
+    keyboard.KeyUp(Keys.LShiftKey);
+    keyboard.KeyTyping(Keys.V);
+    keyboard.KeyTyping(Keys.Enter);
 
     // Paste the text stored in clipboard
-    Keyboard.KeyDown(Keys.LControlKey);
-    Keyboard.KeyTyping(Keys.V);
-    Keyboard.KeyUp(Keys.LControlKey);
+    keyboard.KeyDown(Keys.LControlKey);
+    keyboard.KeyTyping(Keys.V);
+    keyboard.KeyUp(Keys.LControlKey);
 
     // Type something again
-    Keyboard.KeyDown(Keys.LShiftKey);
-    Keyboard.KeyTyping(Keys.V);
-    Keyboard.KeyUp(Keys.LShiftKey);
-    Keyboard.StringInput("ictory");
-    Keyboard.CharacterInput('!');
+    keyboard.KeyDown(Keys.LShiftKey);
+    keyboard.KeyTyping(Keys.V);
+    keyboard.KeyUp(Keys.LShiftKey);
+    keyboard.StringInput("ictory");
+    keyboard.CharacterInput('!');
 }
 ```
 _The example only covered Keyboard part. For Mouse part, please refer to [TheEyes](https://github.com/quellatalo/TheEyes)._

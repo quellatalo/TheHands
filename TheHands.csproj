@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Keyboard.cs" />
+    <Compile Include="KeyboardHandler.cs" />
     <Compile Include="Mouse.cs" />
+    <Compile Include="MouseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WIHandler.cs" />
   </ItemGroup>
