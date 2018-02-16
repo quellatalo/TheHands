@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Qellatalo.Nin.TheHands
+namespace Quellatalo.Nin.TheHands
 {
     internal static class WIHandler
     {

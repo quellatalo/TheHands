@@ -7,7 +7,7 @@
     <ProjectGuid>{33BE1662-3592-46BA-961D-322B5153C4B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TheHands</RootNamespace>
+    <RootNamespace>Quellatalo.Nin.TheHands</RootNamespace>
     <AssemblyName>TheHands</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,9 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Keyboard.cs" />
     <Compile Include="KeyboardHandler.cs" />
-    <Compile Include="Mouse.cs" />
     <Compile Include="MouseHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WIHandler.cs" />

@@ -9,7 +9,9 @@
     <projectUrl>https://github.com/quellatalo/TheHands</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This TheHands library provides methods to send Windows Inputs such as Mouse inputs and Keyboard inputs. A part of alternative tools to sikulix.</description>
-    <releaseNotes>Make static uses obsolete. Recommend using instances.</releaseNotes>
+    <releaseNotes>
++ Namespace typo （╯°□°）╯︵ ┻┻
++ Remove obsolete items</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>sikuli sikulix macro test automation windows mouse keyboard input</tags>
   </metadata>

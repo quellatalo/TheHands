@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using static Qellatalo.Nin.TheHands.WIHandler;
+using static Quellatalo.Nin.TheHands.WIHandler;
 
-namespace Qellatalo.Nin.TheHands
+namespace Quellatalo.Nin.TheHands
 {
     /// <summary>
     /// Make windows mouse actions.
