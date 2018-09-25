@@ -1,6 +1,6 @@
 # TheHands
 
-This TheHands library provides methods to send Windows Inputs such as Mouse inputs and Keyboard inputs. A part of alternative tools to [sikulix](http://sikulix.com/).
+This TheHands library provides methods to send Windows Inputs such as Mouse inputs and Keyboard inputs.
 
 _This library was built and tested on Windows 10 (64bit) with .NET Framework 4.5._
 

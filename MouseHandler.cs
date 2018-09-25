@@ -10,6 +10,44 @@ namespace Quellatalo.Nin.TheHands
     /// </summary>
     public class MouseHandler
     {
+        private const int WHEEL_TICK = 120;
+        private INPUT mouseLeftDownInput, mouseRightDownInput, mouseLeftUpInput, mouseRightUpInput, mouseMoveInput, mouseWheelInput;
+        /// <summary>
+        /// Initializes a MouseHandler instance.
+        /// </summary>
+        public MouseHandler()
+        {
+            mouseLeftDownInput = new INPUT
+            {
+                type = SendInputEventType.InputMouse
+            };
+            mouseLeftDownInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_LEFTDOWN;
+            mouseLeftUpInput = new INPUT
+            {
+                type = SendInputEventType.InputMouse
+            };
+            mouseLeftUpInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_LEFTUP;
+            mouseRightDownInput = new INPUT
+            {
+                type = SendInputEventType.InputMouse
+            };
+            mouseRightDownInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_RIGHTDOWN;
+            mouseRightUpInput = new INPUT
+            {
+                type = SendInputEventType.InputMouse
+            };
+            mouseRightUpInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_RIGHTUP;
+            mouseMoveInput = new INPUT
+            {
+                type = SendInputEventType.InputMouse
+            };
+            mouseMoveInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_MOVE | MouseEventFlags.MOUSEEVENTF_ABSOLUTE;
+            mouseWheelInput = new INPUT
+            {
+                type = SendInputEventType.InputMouse
+            };
+            mouseWheelInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_WHEEL;
+        }
         /// <summary>
         /// Default delay (milliseconds) after a mouse action.
         /// </summary>
@@ -24,7 +62,7 @@ namespace Quellatalo.Nin.TheHands
         {
             public int dx;
             public int dy;
-            public uint mouseData;
+            public int mouseData;
             public MouseEventFlags dwFlags;
             public uint time;
             public IntPtr dwExtraInfo;
@@ -140,10 +178,7 @@ namespace Quellatalo.Nin.TheHands
         /// </summary>
         public void LeftDown()
         {
-            INPUT mouseDownInput = new INPUT();
-            mouseDownInput.type = SendInputEventType.InputMouse;
-            mouseDownInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_LEFTDOWN;
-            SendInput(1, ref mouseDownInput, INPUT_SIZE);
+            SendInput(1, ref mouseLeftDownInput, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultMouseActionDelay);
         }
         /// <summary>
@@ -151,10 +186,7 @@ namespace Quellatalo.Nin.TheHands
         /// </summary>
         public void LeftUp()
         {
-            INPUT mouseUpInput = new INPUT();
-            mouseUpInput.type = SendInputEventType.InputMouse;
-            mouseUpInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_LEFTUP;
-            SendInput(1, ref mouseUpInput, INPUT_SIZE);
+            SendInput(1, ref mouseLeftUpInput, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultMouseActionDelay);
         }
         /// <summary>
@@ -162,10 +194,7 @@ namespace Quellatalo.Nin.TheHands
         /// </summary>
         public void RightDown()
         {
-            INPUT mouseDownInput = new INPUT();
-            mouseDownInput.type = SendInputEventType.InputMouse;
-            mouseDownInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_RIGHTDOWN;
-            SendInput(1, ref mouseDownInput, INPUT_SIZE);
+            SendInput(1, ref mouseRightDownInput, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultMouseActionDelay);
         }
         /// <summary>
@@ -173,10 +202,7 @@ namespace Quellatalo.Nin.TheHands
         /// </summary>
         public void RightUp()
         {
-            INPUT mouseUpInput = new INPUT();
-            mouseUpInput.type = SendInputEventType.InputMouse;
-            mouseUpInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_RIGHTUP;
-            SendInput(1, ref mouseUpInput, INPUT_SIZE);
+            SendInput(1, ref mouseRightUpInput, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultMouseActionDelay);
         }
         /// <summary>
@@ -204,12 +230,9 @@ namespace Quellatalo.Nin.TheHands
         /// <param name="y">Target y.</param>
         public void MoveTo(int x, int y)
         {
-            INPUT mouseUpInput = new INPUT();
-            mouseUpInput.type = SendInputEventType.InputMouse;
-            mouseUpInput.mkhi.mi.dx = (x + 1) * 65535 / GetSystemMetrics(SystemMetric.SM_CXSCREEN);
-            mouseUpInput.mkhi.mi.dy = (y + 1) * 65535 / GetSystemMetrics(SystemMetric.SM_CYSCREEN);
-            mouseUpInput.mkhi.mi.dwFlags = MouseEventFlags.MOUSEEVENTF_MOVE | MouseEventFlags.MOUSEEVENTF_ABSOLUTE;
-            SendInput(1, ref mouseUpInput, INPUT_SIZE);
+            mouseMoveInput.mkhi.mi.dx = (x + 1) * 65535 / GetSystemMetrics(SystemMetric.SM_CXSCREEN);
+            mouseMoveInput.mkhi.mi.dy = (y + 1) * 65535 / GetSystemMetrics(SystemMetric.SM_CYSCREEN);
+            SendInput(1, ref mouseMoveInput, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultMouseActionDelay);
         }
         /// <summary>
@@ -284,7 +307,7 @@ namespace Quellatalo.Nin.TheHands
             LeftUp();
         }
         /// <summary>
-        /// Left mouse button dra to a point.
+        /// Left mouse button drag to a point.
         /// </summary>
         /// <param name="point">Target.</param>
         public void LeftDragTo(Point point)
@@ -812,6 +835,18 @@ namespace Quellatalo.Nin.TheHands
             {
                 MoveTo(point);
             }
+        }
+        /// <summary>
+        /// Roll the wheel.
+        /// Positive ticks to roll up.
+        /// Negative ticks to roll down.
+        /// </summary>
+        /// <param name="ticks">Number of ticks to roll.</param>
+        public void Wheel(int ticks)
+        {
+            mouseWheelInput.mkhi.mi.mouseData = ticks * WHEEL_TICK;
+            SendInput(1, ref mouseWheelInput, INPUT_SIZE);
+            System.Threading.Thread.Sleep(DefaultMouseActionDelay);
         }
     }
 }

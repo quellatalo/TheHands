@@ -10,6 +10,17 @@ namespace Quellatalo.Nin.TheHands
     /// </summary>
     public class KeyboardHandler
     {
+        private INPUT input;
+        /// <summary>
+        /// Initializes a KeyboardHandler instance.
+        /// </summary>
+        public KeyboardHandler()
+        {
+            input = new INPUT
+            {
+                type = SendInputEventType.InputKeyboard
+            };
+        }
         /// <summary>
         /// Default delay (milliseconds) after a keyboard action.
         /// </summary>
@@ -132,22 +143,15 @@ namespace Quellatalo.Nin.TheHands
         /// <param name="keyCode">The key to be released.</param>
         public void KeyUp(Keys keyCode)
         {
-            INPUT input = new INPUT
+            input.mkhi.ki = new KEYBDINPUT
             {
-                type = SendInputEventType.InputKeyboard,
-                mkhi =
-                {
-                    ki = new KEYBDINPUT
-                    {
-                        wVk = (ushort) keyCode,
-                        //wScan = 0,
-                        dwFlags = (IsExtendedKey(keyCode) ?
+                wVk = (ushort)keyCode,
+                //wScan = 0,
+                dwFlags = (IsExtendedKey(keyCode) ?
                             KeyboardEventFlags.KEYEVENTF_KEYUP | KeyboardEventFlags.KEYEVENTF_EXTENDEDKEY :
                             KeyboardEventFlags.KEYEVENTF_KEYUP)
-                        //time = 0,
-                        //dwExtraInfo = IntPtr.Zero
-                    }
-                }
+                //time = 0,
+                //dwExtraInfo = IntPtr.Zero
             };
             SendInput(1, ref input, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultKeyboardActionDelay);
@@ -158,19 +162,12 @@ namespace Quellatalo.Nin.TheHands
         /// <param name="character">The key to be released.</param>
         private void characterUp(char character)
         {
-            INPUT input = new INPUT
+            input.mkhi.ki = new KEYBDINPUT
             {
-                type = SendInputEventType.InputKeyboard,
-                mkhi =
-                {
-                    ki = new KEYBDINPUT
-                    {
-                        wScan = character,
-                        dwFlags = (IsExtendedKey(character) ?
+                wScan = character,
+                dwFlags = (IsExtendedKey(character) ?
                             KeyboardEventFlags.KEYEVENTF_KEYUP | KeyboardEventFlags.KEYEVENTF_EXTENDEDKEY :
                             KeyboardEventFlags.KEYEVENTF_KEYUP)
-                    }
-                }
             };
             SendInput(1, ref input, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultKeyboardActionDelay);
@@ -182,22 +179,14 @@ namespace Quellatalo.Nin.TheHands
         /// <param name="keyCode">The key to be pressed.</param>
         public void KeyDown(Keys keyCode)
         {
-            INPUT input =
-                new INPUT
-                {
-                    type = SendInputEventType.InputKeyboard,
-                    mkhi =
-                    {
-                        ki = new KEYBDINPUT
-                        {
-                            wVk = (ushort) keyCode,
-                            //wScan = 0,
-                            dwFlags = IsExtendedKey(keyCode) ? KeyboardEventFlags.KEYEVENTF_UNICODE | KeyboardEventFlags.KEYEVENTF_EXTENDEDKEY : KeyboardEventFlags.KEYEVENTF_UNICODE
-                            //time = 0,
-                            //dwExtraInfo = IntPtr.Zero
-                        }
-                    }
-                };
+            input.mkhi.ki = new KEYBDINPUT
+            {
+                wVk = (ushort)keyCode,
+                //wScan = 0,
+                dwFlags = IsExtendedKey(keyCode) ? KeyboardEventFlags.KEYEVENTF_UNICODE | KeyboardEventFlags.KEYEVENTF_EXTENDEDKEY : KeyboardEventFlags.KEYEVENTF_UNICODE
+                //time = 0,
+                //dwExtraInfo = IntPtr.Zero
+            };
             SendInput(1, ref input, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultKeyboardActionDelay);
         }
@@ -208,19 +197,11 @@ namespace Quellatalo.Nin.TheHands
         /// <param name="character">The key to be pressed.</param>
         private void characterDown(char character)
         {
-            INPUT input =
-                new INPUT
-                {
-                    type = SendInputEventType.InputKeyboard,
-                    mkhi =
-                    {
-                        ki = new KEYBDINPUT
-                        {
-                            wScan = character,
-                            dwFlags = IsExtendedKey(character) ? KeyboardEventFlags.KEYEVENTF_UNICODE | KeyboardEventFlags.KEYEVENTF_EXTENDEDKEY : KeyboardEventFlags.KEYEVENTF_UNICODE
-                        }
-                    }
-                };
+            input.mkhi.ki = new KEYBDINPUT
+            {
+                wScan = character,
+                dwFlags = IsExtendedKey(character) ? KeyboardEventFlags.KEYEVENTF_UNICODE | KeyboardEventFlags.KEYEVENTF_EXTENDEDKEY : KeyboardEventFlags.KEYEVENTF_UNICODE
+            };
             SendInput(1, ref input, INPUT_SIZE);
             System.Threading.Thread.Sleep(DefaultKeyboardActionDelay);
         }
@@ -250,7 +231,7 @@ namespace Quellatalo.Nin.TheHands
         /// <param name="text">The text to be typed.</param>
         public void StringInput(string text)
         {
-            foreach(char c in text)
+            foreach (char c in text)
             {
                 CharacterInput(c);
             }
