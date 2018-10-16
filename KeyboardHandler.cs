@@ -43,7 +43,7 @@ namespace Quellatalo.Nin.TheHands
         /// </remarks>
         internal bool IsExtendedKey(Keys keyCode)
         {
-            if (keyCode == Keys.Menu ||
+            return keyCode == Keys.Menu ||
                 keyCode == Keys.LMenu ||
                 keyCode == Keys.RMenu ||
                 keyCode == Keys.Control ||
@@ -61,14 +61,7 @@ namespace Quellatalo.Nin.TheHands
                 keyCode == Keys.NumLock ||
                 keyCode == Keys.Cancel ||
                 keyCode == Keys.Snapshot ||
-                keyCode == Keys.Divide)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                keyCode == Keys.Divide;
         }
 
         /// <summary>
