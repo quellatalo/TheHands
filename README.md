@@ -20,7 +20,8 @@ void HandsTest()
     KeyboardHandler keyboard = new KeyboardHandler();
     keyboard.KeyTyping(Keys.LWin);
     Thread.Sleep(2222); // wait (for start menu to appear)
-    keyboard.StringInput("notepad");
+    keyboard.KeyTyping(Keys.N);
+    keyboard.StringInput("otepad");
     Thread.Sleep(2222); // wait, it might take some time for slow PCs to find the program
     keyboard.KeyTyping(Keys.Enter);
     Thread.Sleep(2222); // wait (for start menu to appear)

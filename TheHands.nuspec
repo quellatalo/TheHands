@@ -10,8 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This TheHands library provides methods to send Windows Inputs such as Mouse inputs and Keyboard inputs.</description>
     <releaseNotes>
-+ Supports wheel control.
-+ Various minor improvements.</releaseNotes>
+Nothing major.</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>macro test automation windows mouse keyboard input rpa</tags>
   </metadata>
